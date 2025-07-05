@@ -1,0 +1,122 @@
+enum Choices { Rock, Paper, Scissors }
+class Rule
+{
+    public string player1enter;
+    public string player2enter;
+
+    public int player1score = 0;
+    public int player2score = 0;
+    public int drawScore = 0;   
+
+    public Choices player1choice = Choices.Rock;
+    public Choices player2choice = Choices.Rock;
+
+    public void Player1Enter()
+    {
+        while (true)
+        {
+            Console.WriteLine("Player 1, please enter rock, paper or scissors.");
+            player1enter = Console.ReadLine();
+            if (player1enter == "rock")
+            {
+                player1choice = Choices.Rock;
+                break;
+            }
+            else if (player1enter == "paper")
+            {
+                player1choice = Choices.Paper;
+                break;
+            }
+            else if (player1enter == "scissors")
+            {
+                player1choice = Choices.Scissors;
+                break;
+            }
+            Console.WriteLine("You can only choose between rock, paper and scissors!");
+        }
+    }
+
+    public void Player2Enter()
+    {
+        while (true)
+        {
+            Console.WriteLine("Player 2, please enter rock, paper or scissors.");
+            player2enter = Console.ReadLine();
+            if (player2enter == "rock")
+            {
+                player2choice = Choices.Rock;
+                break;
+            }
+            else if (player2enter == "paper")
+            {
+                player2choice = Choices.Paper;
+                break;
+            }
+            else if (player2enter == "scissors")
+            {
+                player2choice = Choices.Scissors;
+                break;
+            }
+            Console.WriteLine("You can only choose between rock, paper and scissors!");
+        }
+    }
+    public void Verify()
+    {
+        if (player1choice == Choices.Rock && player2choice == Choices.Paper)
+        {
+            Console.WriteLine("Player 2 won!");
+            player2score += 1;
+        }
+        else if (player1choice == Choices.Rock && player2choice == Choices.Scissors)
+        {
+            Console.WriteLine("Player 1 won!");
+            player1score += 1;
+        }
+        else if (player1choice == Choices.Paper && player2choice == Choices.Scissors)
+        {
+            Console.WriteLine("Player 2 won!");
+            player2score += 1;
+        }
+        else if (player1choice == Choices.Paper && player2choice == Choices.Rock)
+        {
+            Console.WriteLine("Player 1 won!");
+            player1score += 1;
+        }
+        else if (player1choice == Choices.Scissors && player2choice == Choices.Rock)
+        {
+            Console.WriteLine("Player 2 won!");
+            player2score += 1;
+        }
+        else if (player1choice == Choices.Scissors && player2choice == Choices.Paper)
+        {
+            Console.WriteLine("Player 1 won!");
+            player1score += 1;
+        }
+        else
+        {
+            Console.WriteLine("Draw!");
+            drawScore += 1;
+        }
+    }
+
+    public void ScoreTable()
+    {
+        Console.WriteLine($"Player 1 score: {player1score} | Player 2 score: {player2score} | Draw: {drawScore}");
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Rule rule = new Rule();
+
+        while (true)
+        {
+            rule.Player1Enter();
+            rule.Player2Enter();
+            rule.Verify();
+            rule.ScoreTable();
+        }
+    }
+}
